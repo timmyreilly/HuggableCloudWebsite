@@ -17,7 +17,34 @@ app.config['SECRET_KEY'] = 'secret!'
 socketio = SocketIO(app)
 thread = None
 
-
+def background_work():
+    """Copy of background thread with better logic for cloud """
+    print "in background_work"
+    oldState = False
+    while True:
+        time.sleep(1)
+        state = get_state_managed_queue()
+        if state == False:
+            socketio.emit('updater', {'data': 'NEUTRAL'}, namespace='/test')
+        else:
+            socketio.emit('updater', {'data': state}, namespace='/test')
+            oldState = state
+        
+        if oldState == False:
+            #nothing going on. If queue hasn't started this should happen
+            socketio.emit('updater', {'data': '...'}, namespace='/test')
+            
+        # if oldState == False:
+        #     # emit nothing going on
+        #     print 'Old State'
+        #     socketio.emit('updater', {'data': '...'}, namespace='/test')
+        # elif state == False:
+        #     socketio.emit('updater', {'data': 'NEUTRAL'}, namespace='/test')
+        # else:
+        #     socketio.emit('updater', {'data': state}, namespace='/test')
+        #     oldState = state
+            
+        
 
 def background_thread():
     """Example of how to send server generated events to clients."""
@@ -44,7 +71,7 @@ def background_thread():
 def index():
     global thread
     if thread is None:
-        thread = Thread(target=background_thread)
+        thread = Thread(target=background_work)
         thread.start()
     return render_template('index.html')
 

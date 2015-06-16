@@ -17,6 +17,12 @@ def getQueueName():
     returns string of current working queue
     '''
     return queueName
+    
+def getAzureQueue():
+    '''
+    returns QueueService object of current storage account in use
+    '''
+    return queue_service
 
 def getMessage():
     ''' 
