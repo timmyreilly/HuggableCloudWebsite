@@ -19,12 +19,15 @@ thread = None
 def background_thread():
     """Example of how to send server generated events to clients."""
     count = 0
+    print 'in background_thred'
     while True:
-        time.sleep(10)
-        count += 1
-        socketio.emit('my response',
-                      {'data': 'Server generated event', 'count': count},
-                      namespace='/test')
+        time.sleep(1)
+        t = str(time.clock())
+        print 'current t value: '
+        print t
+        socketio.emit('updater', {'data': t}, namespace='/test')
+        socketio.emit('my update', {'data': t}, namespace='/test')
+      
 
 
 @app.route('/')
