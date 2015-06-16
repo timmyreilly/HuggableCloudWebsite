@@ -34,16 +34,6 @@ def background_work():
             #nothing going on. If queue hasn't started this should happen
             socketio.emit('updater', {'data': '...'}, namespace='/test')
             
-        # if oldState == False:
-        #     # emit nothing going on
-        #     print 'Old State'
-        #     socketio.emit('updater', {'data': '...'}, namespace='/test')
-        # elif state == False:
-        #     socketio.emit('updater', {'data': 'NEUTRAL'}, namespace='/test')
-        # else:
-        #     socketio.emit('updater', {'data': state}, namespace='/test')
-        #     oldState = state
-            
         
 
 def background_thread():
