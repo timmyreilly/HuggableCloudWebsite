@@ -9,11 +9,14 @@ from flask import Flask, render_template, session, request
 from flask.ext.socketio import SocketIO, emit, join_room, leave_room, \
     close_room, disconnect
 
+from helperFunctions import *
+
 app = Flask(__name__)
 app.debug = True
 app.config['SECRET_KEY'] = 'secret!'
 socketio = SocketIO(app)
 thread = None
+
 
 
 def background_thread():
@@ -25,8 +28,15 @@ def background_thread():
         t = str(time.clock())
         print 'current t value: '
         print t
-        socketio.emit('updater', {'data': t}, namespace='/test')
-        socketio.emit('my update', {'data': t}, namespace='/test')
+        state = get_state_managed_queue()
+        print state
+        if state == False:
+            #no state ready to be displayed
+            socketio.emit('updater', {'data': '...'}, namespace='/test')
+        else:
+            socketio.emit('updater', {'data': state}, namespace='/test')
+        
+        socketio.emit('my time', {'data': t}, namespace='/test')
       
 
 

@@ -20,13 +20,13 @@
             socket.on('my response', function(msg) {
                 $('#log').append('<br>Received #' + msg.count + ': ' + msg.data);
             });
-            
-            socket.on('my update', function(msg) {
-                $('#state').prepend('<br>msg.data ' + msg.data); 
-            });
-            
+                        
             socket.on('updater', function(msg){
                 $('#s').html('<h2>' + msg.data + '</h2>');
+            });
+            
+                        socket.on('my time', function(msg) {
+                $('#state').prepend('<br>msg.data: ' + msg.data); 
             });
 
             // handlers for the different forms in the page
