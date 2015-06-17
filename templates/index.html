@@ -25,10 +25,15 @@
                 $('#s').html('<h2>' + msg.data + '</h2>');
             });
             
-                        socket.on('my time', function(msg) {
+            socket.on('my time', function(msg) {
                 $('#state').prepend('<br>msg.data: ' + msg.data); 
             });
-
+            
+            socket.on('clouder', function(msg) {
+                $('#cloud').prepend(msg.image);
+                 
+            });
+            
             // handlers for the different forms in the page
             // these send data to the server in a variety of ways
             $('form#disconnect').submit(function(event) {
@@ -41,7 +46,8 @@
 <body>
     <h1>The Huggable Cloud</h1>
     <div id='cloud'>
-        <img src="img\neutral.jpg" />
+        <img src="{{ url_for('static', filename='neutral.jpg') }}"/>
+        <!--<img src="img\neutral.jpg" />-->
     </div>
     <h2>State</h2>
     <div id='s'></div>

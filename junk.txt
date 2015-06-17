@@ -1,0 +1,1 @@
+//$('#cloud').prepend('<img src=\" {{ url_for(\'static\', filename=\' ' + msg.image + '.jpg\')}}\"/>');

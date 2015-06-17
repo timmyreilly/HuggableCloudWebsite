@@ -34,7 +34,8 @@ def background_work():
             #nothing going on. If queue hasn't started this should happen
             socketio.emit('updater', {'data': '...'}, namespace='/test')
             
-        
+        if state == 'HUGGING':
+            socketio.emit('clouder', {'image': 'blur'}, namespace='/test')
 
 def background_thread():
     """Example of how to send server generated events to clients."""
