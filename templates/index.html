@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Flask-SocketIO Test</title>
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.3.min.js"></script>
     <script type="text/javascript" src="//code.jquery.com/jquery-1.4.2.min.js"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.16/socket.io.min.js"></script>
     <script type="text/javascript" charset="utf-8">
@@ -23,16 +24,28 @@
                         
             socket.on('updater', function(msg){
                 $('#s').html('<h2>' + msg.data + '</h2>');
+                $('#image1').append('#image2');
             });
             
             socket.on('my time', function(msg) {
                 $('#state').prepend('<br>msg.data: ' + msg.data); 
             });
             
-            socket.on('clouder', function(msg) {
-                $('#cloud').prepend(msg.image);
-                 
+            socket.on('HUGGING', function(msg){
+                $('#image2').hide();
+                $('#image1').show();
+            } );
+            
+            socket.on('PUNCHING', function(msg){
+                $('#image1').hide();
+                $('#image2').show();
             });
+            
+            socket.on('message', function(msg){
+                $('#test').html('<p>' + msg.time + '</p>');             
+            });
+            
+            
             
             // handlers for the different forms in the page
             // these send data to the server in a variety of ways
@@ -44,12 +57,16 @@
     </script>
 </head>
 <body>
+    
+    <div>
+        <p id='test'> Hello </p>
+    </div>
+    
     <h1>The Huggable Cloud</h1>
     <div id='cloud'>
-        <img src="{{ url_for('static', filename='neutral.jpg') }}"/>
-        <img src="{{ url_for('static', filename='candle.jpg') }}"/>
+        <img src="{{ url_for('static', filename='neutral.jpg') }}" id='image1'/>
+        <img src="{{ url_for('static', filename='candle.jpg') }}" id='image2'/>
         <!--<img src="img\neutral.jpg" />-->
-        
     </div>
     
     <h2>State</h2>
@@ -59,6 +76,9 @@
         
     <h2>Received:</h2>
     <div id="log"></div>
+    
+    
+    
 </body>
 <footer>
     <div id="state"></div>

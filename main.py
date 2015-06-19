@@ -35,7 +35,10 @@ def background_work():
             socketio.emit('updater', {'data': '...'}, namespace='/test')
             
         if state == 'HUGGING':
-            socketio.emit('clouder', {'image': 'blur'}, namespace='/test')
+            socketio.emit('HUGGING', {'image': 'blur'}, namespace='/test')
+        
+        if state == 'PUNCHING':
+            socketio.emit('PUNCHING', {'data': 'candle'}, namespace='/test')
 
 def background_thread():
     """Example of how to send server generated events to clients."""
@@ -56,7 +59,13 @@ def background_thread():
         
         socketio.emit('my time', {'data': t}, namespace='/test')
       
-
+def background_stuff():
+    """ Let's do it a bit cleaner? """
+    print 'In background_stuff'
+    while True:
+        time.sleep(1)
+        t = str(time.clock())
+        socketio.emit('message', {'data': 'This is data', 'time': t}, namespace='/test')
 
 @app.route('/')
 def index():
