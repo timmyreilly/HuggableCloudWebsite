@@ -73,7 +73,7 @@ def index():
     if thread is None:
         thread = Thread(target=background_work)
         thread.start()
-    return render_template('index.html')
+    return render_template('indextrial.html')
 
 
 @socketio.on('my event', namespace='/test')

@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Flask-SocketIO Test</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> 
     <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.3.min.js"></script>
     <script type="text/javascript" src="//code.jquery.com/jquery-1.4.2.min.js"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.16/socket.io.min.js"></script>
@@ -59,21 +60,44 @@
 <body>
     
     
-    
-    <h1>The Huggable Cloud</h1>
-    <div id='cloud'>
-        <img src="{{ url_for('static', filename='cloudneutral.png') }}" id='image1'/>
-        <img src="{{ url_for('static', filename='cloudspin.png') }}" id='image2'/>
-        <!--<img src="img\neutral.jpg" />-->
+    <div id='a'>
+        <h1>The Huggable Cloud</h1>
+    </div>
+    <div id='b'>
+        <img id='bi' src="{{ url_for('static', filename='cloudneutral.png') }}" id='image1'/>
+        <!--<img src="{{ url_for('static', filename='cloudspin.png') }}" id='image2'/>-->
+    </div>
+    <div id='c'>
+        Waiting for Connection
+    </div>
+
+    <div id='d'>
+        Not Updated
     </div>
     
-    <h2>State</h2>
-    <div id='s'></div>
+    <div id='e'>
+        <ul>
+            <li>
+                Info
+            </li>
+            <li>
+                Contact
+            </li>
+            <li>
+                Resources
+            </li>
+        </ul>
+    </div>
      
 
         
-    <h2>Received:</h2>
-    <div id="log"></div>
+    <div id="f">
+        <ul>
+            <li>
+                Previous States
+            </li>
+        </ul>
+    </div>
     
     
     
@@ -85,4 +109,3 @@
     </form>-->
 </footer>
 </html>
-
