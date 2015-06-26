@@ -21,24 +21,29 @@ def background_work():
     """Copy of background thread with better logic for cloud """
     print "in background_work"
     oldState = False
+    state = False
     while True:
         time.sleep(1)
         state = get_state_managed_queue()
+        
         if state == False:
-            socketio.emit('updater', {'data': 'NEUTRAL'}, namespace='/test')
+            socketio.emit('newState', {'data': 'NEUTRAL'}, namespace='/test')
+            continue
         else:
-            socketio.emit('updater', {'data': state}, namespace='/test')
+            socketio.emit('newState', {'data': state}, namespace='/test')
             oldState = state
+            continue
         
         if oldState == False:
             #nothing going on. If queue hasn't started this should happen
-            socketio.emit('updater', {'data': '...'}, namespace='/test')
+            socketio.emit('newState', {'data': '...'}, namespace='/test')
+            continue
             
-        if state == 'HUGGING':
-            socketio.emit('HUGGING', {'image': 'blur'}, namespace='/test')
-        
-        if state == 'PUNCHING':
-            socketio.emit('PUNCHING', {'data': 'candle'}, namespace='/test')
+        # if state == 'HUGGING':
+        #     socketio.emit('HUGGING', {'image': 'blur'}, namespace='/test')
+        # 
+        # if state == 'PUNCHING':
+        #     socketio.emit('PUNCHING', {'data': 'candle'}, namespace='/test')
 
 def background_thread():
     """Example of how to send server generated events to clients."""
@@ -66,6 +71,13 @@ def background_stuff():
         time.sleep(1)
         t = str(time.clock())
         socketio.emit('message', {'data': 'This is data', 'time': t}, namespace='/test')
+        
+def background_trial():
+    """ Let's do it again with the trial example"""
+    print 'in background_trial'
+    while True:
+        state = get_state_managed_queue()
+        
 
 @app.route('/')
 def index():

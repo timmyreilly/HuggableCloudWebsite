@@ -16,34 +16,11 @@
             socket.on('connect', function() {
                 socket.emit('my event', {data: 'I\'m connected!'});
             });
-
-            // event handler for server sent data
+            
+                        // event handler for server sent data
             // the data is displayed in the "Received" section of the page
             socket.on('my response', function(msg) {
                 $('#log').append('<br>Received #' + msg.count + ': ' + msg.data);
-            });
-                        
-            socket.on('updater', function(msg){
-                $('#s').html('<h2>' + msg.data + '</h2>');
-                $('#image1').append('#image2');
-            });
-            
-            socket.on('my time', function(msg) {
-                $('#state').prepend('<br>msg.data: ' + msg.data); 
-            });
-            
-            socket.on('HUGGING', function(msg){
-                $('#image2').hide();
-                $('#image1').show();
-            } );
-            
-            socket.on('PUNCHING', function(msg){
-                $('#image1').hide();
-                $('#image2').show();
-            });
-            
-            socket.on('message', function(msg){
-                $('#test').html('<p>' + msg.time + '</p>');             
             });
             
             socket.on('newState', function(msg){
@@ -54,7 +31,7 @@
                 }
                 
             });
-            
+
             // handlers for the different forms in the page
             // these send data to the server in a variety of ways
             $('form#disconnect').submit(function(event) {
@@ -63,13 +40,17 @@
             });
         });
     </script>
+    
 </head>
+
 <body>
     
     
+    <div id='a'>
+        <h1>The Huggable Cloud</h1>
+    </div>
     
-    <h1>The Huggable Cloud</h1>
-    <div id='cloudDiv'>
+    <div id='b'>
         <img src="{{ url_for('static', filename='cloudneutral.png') }}" class='cloudImage' id='neutral'/>
         <img src="{{ url_for('static', filename='cloudhug.png') }}" class='cloudImage' id='hug'/>
         <img src="{{ url_for('static', filename='cloudnotconnected.png') }}" class='cloudImage' id='notconnected'/>
@@ -77,18 +58,39 @@
         <img src="{{ url_for('static', filename='cloudshake.png') }}" class='cloudImage' id='shake'/>
         <img src="{{ url_for('static', filename='cloudspin.png') }}" class='cloudImage' id='spin'/>
         <img src="{{ url_for('static', filename='cloudthrow.png') }}" class='cloudImage' id='throw'/>
-        
-        
-        <!--<img src="img\neutral.jpg" />-->
     </div>
     
-    <h2>State</h2>
-    <div id='s'></div>
+    <div id='c'>
+        Waiting for Connection
+    </div>
+
+    <div id='d'>
+        Not Updated
+    </div>
+    
+    <div id='e'>
+        <ul>
+            <li>
+                Info
+            </li>
+            <li>
+                Contact
+            </li>
+            <li>
+                Resources
+            </li>
+        </ul>
+    </div>
      
 
         
-    <h2>Received:</h2>
-    <div id="log"></div>
+    <div id="f">
+        <ul>
+            <li>
+                Previous States
+            </li>
+        </ul>
+    </div>
     
     
     
@@ -100,4 +102,3 @@
     </form>-->
 </footer>
 </html>
-
