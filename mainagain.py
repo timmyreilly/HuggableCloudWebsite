@@ -15,21 +15,22 @@ app.config['SECRET_KEY'] = 'secret!'
 socketio = SocketIO(app)
 thread = None
 
+
 def background_work():
-    """ Let's do it again with the trial example"""
-    print 'in background_trial'
-	oldState = False
+    oldState = False
     while True:
         time.sleep(1)
-		state = get_state_managed_queue()
-		
-		if state == False:
-			socketio.emit('newstate', {'data': 'NEUTRAL'}, namespace='/test')
-			continue
-		else:
-			socketio.emit('newState', {'data': state}, namespace='/test')
-			oldState = state
-			continue
+        state = get_state_managed_queue()
+        
+        if state == False:
+            socketio.emit('newState', {'data': 'NEUTRAL'}, namespace='/test')
+            continue
+        else:
+            socketio.emit('newState', {'data': state}, namespace='/test')
+            oldState = state
+            continue
+        
+
 
 @app.route('/')
 def index():
@@ -45,9 +46,7 @@ def test_connect():
     emit('my response', {'data': 'Connected', 'count': 0})
 
 
-@socketio.on('disconnect', namespace='/test')
-def test_disconnect():
-    print('Client disconnected')
+
 	
 if __name__ == '__main__':
     socketio.run(app)

@@ -25,19 +25,30 @@
             
             socket.on('newState', function(msg){
                 var state = msg.data;
+                $('#c').html('<p>' + state + '</p>');
                 switch(state){
+                    case "NEUTRAL":
+                        console.log('Neutral');
+                        $('#neutral').siblings().height( 2 );
+                        $('#neutral').height( 400 );
+                        break;
                     case "HUGGING":
-                    
+                        console.log('Got a hug');
+                        $('#hug').siblings().height( 2 );
+                        $('#hug').height( 400 );                        
+                        break;
+                    case "PUNCHING":
+                        console.log('Got punched');
+                        $('#punch').siblings().height( 2 );
+                        $('#punch').height( 400 )                  
+                        break;
                 }
                 
             });
+            //document.getElementById('c').innerHTML = state; document.getElementsByClassName('cloudImage').height = "300";
 
             // handlers for the different forms in the page
             // these send data to the server in a variety of ways
-            $('form#disconnect').submit(function(event) {
-                socket.emit('disconnect request');
-                return false;
-            });
         });
     </script>
     
@@ -51,13 +62,13 @@
     </div>
     
     <div id='b'>
-        <img src="{{ url_for('static', filename='cloudneutral.png') }}" class='cloudImage' id='neutral'/>
-        <img src="{{ url_for('static', filename='cloudhug.png') }}" class='cloudImage' id='hug'/>
-        <img src="{{ url_for('static', filename='cloudnotconnected.png') }}" class='cloudImage' id='notconnected'/>
-        <img src="{{ url_for('static', filename='cloudpunch.png') }}" class='cloudImage' id='punch'/>
-        <img src="{{ url_for('static', filename='cloudshake.png') }}" class='cloudImage' id='shake'/>
-        <img src="{{ url_for('static', filename='cloudspin.png') }}" class='cloudImage' id='spin'/>
-        <img src="{{ url_for('static', filename='cloudthrow.png') }}" class='cloudImage' id='throw'/>
+        <img class='cloudImage' id='neutral' src="{{ url_for('static', filename='cloudneutral.png') }}" />
+        <img class='cloudImage' id='hug' src="{{ url_for('static', filename='cloudhug.png') }}" />
+        <img class='cloudImage' id='notconnected' src="{{ url_for('static', filename='cloudnotconnected.png') }}" />
+        <img class='cloudImage' id='punch' src="{{ url_for('static', filename='cloudpunch.png') }}" />
+        <img class='cloudImage' id='shake' src="{{ url_for('static', filename='cloudshake.png') }}" />
+        <img class='cloudImage' id='spin' src="{{ url_for('static', filename='cloudspin.png') }}" />
+        <img class='cloudImage' id='throw' src="{{ url_for('static', filename='cloudthrow.png') }}" />
     </div>
     
     <div id='c'>
