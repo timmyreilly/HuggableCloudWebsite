@@ -1,5 +1,7 @@
 header, footer, body {
   font-family: sans-serif;
+
+  
 }
 
 li {
@@ -17,17 +19,26 @@ h1 {
 
 #a {
   background: #14A3CC;
-  font-size: 50;
   padding: 2%;
 }
 
 #b {
   background: white;
-  
+
+}
+
+IMG.cloudImage {
+  background: white;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #c {
+  /* This is where are state is displayed */
   background: #14A3CC;
+  text-align: center;
+  font-size: 30px;
 }
 
 #d {
@@ -38,6 +49,7 @@ h1 {
 #e {
   border: 2px solid black;
   background: #14A3CC;
+  text-align: center;
 }
 
 #f {

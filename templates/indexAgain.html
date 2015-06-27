@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>Flask-SocketIO Test</title>
+    <title>The Huggable Cloud</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> 
     <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.3.min.js"></script>
     <script type="text/javascript" src="//code.jquery.com/jquery-1.4.2.min.js"></script>
@@ -31,10 +31,12 @@
                 $('#c').html('<p>' + state + '</p>');
                 
                 console.log(statetag);
-                $(statetag).siblings().height(  700 );
-                $(statetag).css({
-                    backgroundColor: 'blue'
-                });
+                $(statetag).siblings().hide();
+                //$(statetag).show();
+                $(statetag).fadeIn(30);
+                // $(statetag).css({
+                //     backgroundColor: 'blue'
+                // });
 
                 
             });
