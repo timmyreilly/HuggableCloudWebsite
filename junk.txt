@@ -1,1 +1,24 @@
 //$('#cloud').prepend('<img src=\" {{ url_for(\'static\', filename=\' ' + msg.image + '.jpg\')}}\"/>');
+
+            socket.on('newState', function(msg){
+                var state = msg.data;
+                $('#c').html('<p>' + state + '</p>');
+                switch(state){
+                    case "NEUTRAL":
+                        console.log('Neutral');
+                        $('#neutral').siblings().height( 2 );
+                        $('#neutral').height( 400 );
+                        break;
+                    case "HUGGING":
+                        console.log('Got a hug');
+                        $('#hug').siblings().height( 2 );
+                        $('#hug').height( 400 );                        
+                        break;
+                    case "PUNCHING":
+                        console.log('Got punched');
+                        $('#punch').siblings().height( 2 );
+                        $('#punch').height( 400 )                  
+                        break;
+                }
+                
+            });

@@ -38,7 +38,7 @@ def index():
     if thread is None:
         thread = Thread(target=background_work)
         thread.start()
-    return render_template('indexagain.html')
+    return render_template('indexAgain.html')
 	
 
 @socketio.on('connect', namespace='/test')
