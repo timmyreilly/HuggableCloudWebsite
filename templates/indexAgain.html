@@ -9,6 +9,9 @@
     <script type="text/javascript" charset="utf-8">
         $(document).ready(function(){
             namespace = '/test'; // change to an empty string to use the global namespace
+            
+            $('#notconnected').siblings().hide();
+            
 
             // the socket.io documentation recommends sending an explicit package upon connection
             // this is specially important when using the global namespace
@@ -37,7 +40,8 @@
                 
                 // $(statetag).css({
                 //     backgroundColor: 'blue'
-                // });
+                // })
+                $('#d').html('<p> Updated <p>');
 
                 
             });
@@ -77,13 +81,13 @@
     <div id='e'>
         <ul>
             <li>
-                Info
+                <a target="_blank" href="http://timmyreilly.com">Info</a>
             </li>
             <li>
-                Contact
+                <a target="_blank" href="mailto:Tim.Reilly@microsoft.com?subject=Huggable Cloud Question">Contact</a>
             </li>
             <li>
-                Resources
+                <a target="_blank" href="https://github.com/timmyreilly/HuggableCloudWebsite">GitHub</a>
             </li>
         </ul>
     </div>
