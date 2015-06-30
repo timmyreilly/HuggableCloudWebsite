@@ -58,7 +58,7 @@ def get_state_managed_queue():
     else:
         state = eval(getMessage())[0]
         print state
-        if qCount > 30:
+        if qCount > 3:
             print 'Queue too large -- clearing'
             clear_queue()
         else:

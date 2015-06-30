@@ -6,6 +6,15 @@ header, footer, body {
 
 }
 
+div {
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  border-radius: 30px;
+  text-align: center;
+  
+}
+
 a {
   color: black;
 }
@@ -17,22 +26,16 @@ li {
 }
 
 h1 {
-  font-size: 50px;
+  font-size: 75px;
   text-align: center;
-  
 }
 
 #a {
   background: #14A3CC;
-  border: 2px solid #098DB2;
-  padding: 2%;
-  border-radius: 30px;
 }
 
 #b {
-  border-radius: 30px;
   background: white;
-
 }
 
 IMG.cloudImage {
@@ -44,37 +47,30 @@ IMG.cloudImage {
 
 #c {
   /* This is where are state is displayed */
-  background: #14A3CC;
-  border: 2px solid #098DB2;
-  text-align: center;
-  font-size: 30px;
-  border-radius: 30px;
+  background: #FFF251;
+  font-size: 50px;
+  margin-top: 20px;
 }
 
 #d {
   /* This is where we'll flash that an update is made' */
-  background: #FFEE19;
-  border-radius: 30px;
-  text-align: center;
+  background: #FF004E;
+  font-size: 25px;
 }
+
 
 #e {
   /* This is info contact resources */
-  border: 2px solid #098DB2;
   background: #14A3CC;
-  text-align: center;
-  border-radius: 30px;
 }
 
 #f {
   /* Very bottom where we'll display more info' */
   background: #FFEE19;
-  border: 2px solid #FFEE19;
-  border-radius: 30px;
 }
 
 /*Pink: #FFCBDB
 Yellow: #FFEE19
-Magenta: #FFEE19
+Magenta: #FF004E
 Light blue: #14A3CC
 Dark blue: #098DB2*/
