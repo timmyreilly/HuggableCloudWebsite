@@ -19,7 +19,7 @@ thread = None
 def background_work():
     oldState = False
     while True:
-        time.sleep(1)
+        time.sleep(0.85)
         state = get_state_managed_queue()
         
         if state == False:
