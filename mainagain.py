@@ -15,6 +15,20 @@ app.config['SECRET_KEY'] = 'secret!'
 socketio = SocketIO(app)
 thread = None
 
+foo = ['neutral', 'hugging', 'notconnected', 'punching', 'shaking', 'spinning', 'throwing']
+
+def getRandomImageString():
+	return random.choice(foo)
+
+
+def background_random():
+	while True: 
+		time.sleep(1) #One second wait between image change
+		
+		imageString = getRandomImageString()
+		
+		socketio.emit('newImage', {'data': imageString}, namespace='/test')
+
 
 def background_work():
     oldState = False
@@ -39,6 +53,14 @@ def index():
         thread = Thread(target=background_work)
         thread.start()
     return render_template('indexAgain.html')
+    
+@app.route('/random')
+def random():
+    global thread
+    if thread is None:
+        thread = Thread(target=background_random)
+        thread.start()
+    return render_template('indexRandom.html')
 	
 
 @socketio.on('connect', namespace='/test')
