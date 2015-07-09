@@ -1,10 +1,11 @@
 from gevent import monkey
 monkey.patch_all()
 
-import random
+
 import time
+import random as rdm
 from threading import Thread
-from flask import Flask, render_template, session, request
+from flask import Flask, render_template, session, request, redirect, url_for
 from flask.ext.socketio import SocketIO, emit, join_room, leave_room, \
     close_room, disconnect
 
@@ -15,11 +16,14 @@ app.debug = True
 app.config['SECRET_KEY'] = 'secret!'
 socketio = SocketIO(app)
 thread = None
+randomThread = None
 
 foo = ['neutral', 'hugging', 'notconnected', 'punching', 'shaking', 'spinning', 'throwing']
 
+
+
 def getRandomImageString():
-	return random.choice(foo)
+	return rdm.choice(foo)
 
 
 def background_random():
@@ -45,10 +49,12 @@ def background_work():
             oldState = state
             continue
         
-
-
 @app.route('/')
 def index():
+    return redirect(url_for('home'))
+
+@app.route('/home')
+def home():
     global thread
     if thread is None:
         thread = Thread(target=background_work)
@@ -57,11 +63,12 @@ def index():
     
 @app.route('/random')
 def random():
-    global thread
-    if thread is None:
-        thread = Thread(target=background_random)
-        thread.start()
+    global randomThread
+    if randomThread is None:
+        randomThread = Thread(target=background_random)
+        randomThread.start()
     return render_template('indexRandom.html')
+    
 	
 
 @socketio.on('connect', namespace='/test')
