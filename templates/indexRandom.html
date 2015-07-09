@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>The Huggable Cloud</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> 
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.4.2.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.16/socket.io.min.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        $(document).ready(function(){
+            namespace = '/test'; // change to an empty string to use the global namespace
+            var socket = io.connect('http://' + document.domain + ':' + location.port + namespace);
+            socket.on('connect', function() {
+                socket.emit('my event', {data: 'I\'m connected!'});
+            });
+            
+            
+            $('#notconnected').siblings().hide();
+            
+            socket.on('newImage', function(msg){
+                var image = msg.data;
+                var tag = '#';
+                var str = tag.concat(image);
+                var imagetag = str.toLowerCase();
+                
+                $(imagetag).siblings().hide();
+                $(imagetag).fadeIn(250);
+            });
+        });
+    </script>
+    
+</head>
+
+<body>
+	<h1>Random Clouds!</h1>
+    
+	<div class="imageDiv">
+	    <img class='cloudImage' id='neutral' src="{{ url_for('static', filename='cloudneutral.png') }}" />
+	    <img class='cloudImage' id='hugging' src="{{ url_for('static', filename='cloudhug.png') }}" />
+	    <img class='cloudImage' id='notconnected' src="{{ url_for('static', filename='cloudnotconnected.png') }}" />
+	    <img class='cloudImage' id='punching' src="{{ url_for('static', filename='cloudpunch.png') }}" />
+	    <img class='cloudImage' id='shaking' src="{{ url_for('static', filename='cloudshake.png') }}" />
+	    <img class='cloudImage' id='spinning' src="{{ url_for('static', filename='cloudspin.png') }}" />
+	    <img class='cloudImage' id='throwing' src="{{ url_for('static', filename='cloudthrow.png') }}" />
+	</div>
+ 
+</body>
+<footer>
+	
+</footer>
+</html>
